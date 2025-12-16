@@ -1,15 +1,15 @@
 ## INFORMASI PROYEK
 
 **Judul Proyek:**  
-[(Contoh: "Klasifikasi Penyakit Daun Menggunakan CNN", "Prediksi Harga Rumah dengan Machine Learning", "Analisis Sentimen Ulasan Produk")]
+"Analisis Prediksi Interaksi Postingan Facebook Menggunakan Machine Learning & Deep Learning"
 
-**Nama Mahasiswa:** [Nama Lengkap]  
-**NIM:** [Nomor Induk Mahasiswa]  
-**Program Studi:** [Teknologi Informasi / Rekayasa Perangkat Lunak]  
-**Mata Kuliah:** [Nama Mata Kuliah]  
-**Dosen Pengampu:** [Nama Dosen]  
-**Tahun Akademik:** [Tahun/Semester]
-**Link GitHub Repository:** [URL Repository]
+**Nama Mahasiswa:** Shaffa Dwiaji Feryansyah Putra <br>
+**NIM:** 234311028  <br>
+**Program Studi:** Teknologi Rekayasa Perangkat Lunak <br>
+**Mata Kuliah:** Data Science  <br>
+**Dosen Pengampu:** Gus Nanang Syaifuddiin, S.Kom., M.Kom. <br>
+**Tahun Akademik:** 2025/Ganjil (5) <br>
+**Link GitHub Repository:** https://github.com/ShaffaDwiaji/DS_Project_UAS <br>
 **Link Video Pembahasan:** [URL Repository]
 
 ---
@@ -33,93 +33,39 @@ Pada proyek ini, mahasiswa diharapkan dapat:
 ## 2. PROJECT OVERVIEW
 
 ### 2.1 Latar Belakang
-**Isi bagian ini dengan:**
-- Mengapa proyek ini penting?
-- Permasalahan umum pada domain terkait (misal: kesehatan, pendidikan, keuangan, pertanian, NLP, computer vision, dll.)
-- Manfaat proyek untuk pengguna, bisnis, atau penelitian
-- Studi literatur atau referensi ilmiah (minimal 1–2 sumber wajib)
+Dalam era pemasaran digital, kemampuan untuk memprediksi tingkat keterlibatan (engagement) audiens terhadap sebuah konten sangatlah krusial. Perusahaan seringkali menghabiskan sumber daya besar untuk membuat konten, namun hasilnya tidak selalu sesuai harapan.
 
-**Contoh referensi (berformat APA/IEEE):**
-> Goodfellow, I., Bengio, Y., & Courville, A. (2016). *Deep Learning*. MIT Press.
+Proyek ini bertujuan untuk membangun model prediksi jumlah interaksi (Total Interactions) pada laman Facebook merek kosmetik terkenal. Dengan memprediksi interaksi sebelum konten diterbitkan, manajer media sosial dapat mengoptimalkan strategi konten mereka untuk mendapatkan jangkauan maksimal.
 
-**[Jelaskan konteks dan latar belakang proyek]**
+Dataset yang digunakan berasal dari penelitian Moro et al. (2016) yang dipublikasikan di UCI Machine Learning Repository, mencakup 500 postingan dengan berbagai metrik kinerja.
+
+**Referensi:**
+> Moro, S., Rita, P., & Vala, B. (2016). Predicting social media performance metrics and evaluation of the impact on brand building: A data mining approach. Journal of Business Research.
 
 ## 3. BUSINESS UNDERSTANDING / PROBLEM UNDERSTANDING
 ### 3.1 Problem Statements
+
 Tuliskan 2–4 pernyataan masalah yang jelas dan spesifik.
-
-**Contoh (universal):**
-1. Model perlu mampu memprediksi nilai target dengan akurasi tinggi
-2. Sistem harus dapat mengidentifikasi pola pada citra secara otomatis
-3. Dataset memiliki noise sehingga perlu preprocessing yang tepat
-4. Dibutuhkan model deep learning yang mampu belajar representasi fitur kompleks
-
-**[Tulis problem statements Anda di sini]**
+1. Manajer pemasaran kesulitan memperkirakan potensi viralitas atau interaksi sebuah postingan baru.
+2. Belum diketahui fitur apa (Waktu posting, Tipe konten, atau Pembayaran) yang paling signifikan mendongkrak interaksi.
+3. Diperlukan perbandingan performa antara model sederhana dan kompleks untuk menentukan alat prediksi yang paling efisien pada dataset berukuran kecil.
 
 ### 3.2 Goals
 
 Tujuan harus spesifik, terukur, dan selaras dengan problem statement.
-**Contoh tujuan:**
-1. Membangun model ML untuk memprediksi variabel target dengan akurasi > 80%
-2. Mengukur performa tiga pendekatan model (baseline, advanced, deep learning)
-3. Menentukan model terbaik berdasarkan metrik evaluasi yang relevan
-4. Menghasilkan sistem yang dapat bekerja secara reproducible
-
-**[Tulis goals Anda di sini]**
+1. Membangun model regresi yang mampu memprediksi variabel Total Interactions dengan tingkat error serendah mungkin.
+2. Mengukur performa tiga pendekatan model: Linear Regression (Baseline), Random Forest (Advanced), dan Multilayer Perceptron (Deep Learning).
+3. Menentukan strategi konten terbaik berdasarkan hasil analisis fitur.
 
 ### 3.3 Solution Approach
 
 Mahasiswa **WAJIB** menggunakan minimal **tiga model** dengan komposisi sebagai berikut:
-#### **Model 1 – Baseline Model**
-Model sederhana sebagai pembanding dasar.
-**Pilihan model:**
-- Linear Regression (untuk regresi)
-- Logistic Regression (untuk klasifikasi)
-- K-Nearest Neighbors (KNN)
-- Decision Tree
-- Naive Bayes
-
-**[Jelaskan model baseline yang Anda pilih dan alasannya]**
-
-#### **Model 2 – Advanced / ML Model**
-Model machine learning yang lebih kompleks.
-**Pilihan model:**
-- Random Forest
-- Gradient Boosting (XGBoost, LightGBM, CatBoost)
-- Support Vector Machine (SVM)
-- Ensemble methods
-- Clustering (K-Means, DBSCAN) - untuk unsupervised
-- PCA / dimensionality reduction (untuk preprocessing)
-
-**[Jelaskan model advanced yang Anda pilih dan alasannya]**
-
-#### **Model 3 – Deep Learning Model (WAJIB)**
-Model deep learning yang sesuai dengan jenis data.
-**Pilihan Implementasi (pilih salah satu sesuai dataset):**
-**A. Tabular Data:**
-- Multilayer Perceptron (MLP) / Neural Network
-- Minimum: 2 hidden layers
-- Contoh: prediksi harga, klasifikasi binary/multiclass
-
-**B. Image Data:**
-- CNN sederhana (minimum 2 convolutional layers) **ATAU**
-- Transfer Learning (ResNet, VGG, MobileNet, EfficientNet) - **recommended**
-- Contoh: klasifikasi gambar, object detection
-
-**C. Text Data:**
-- LSTM/GRU (minimum 1 layer) **ATAU**
-- Embedding + Dense layers **ATAU**
-- Pre-trained model (BERT, DistilBERT, Word2Vec)
-- Contoh: sentiment analysis, text classification
-
-**D. Time Series:**
-- LSTM/GRU untuk sequential prediction
-- Contoh: forecasting, anomaly detection
-
-**E. Recommender Systems:**
-- Neural Collaborative Filtering (NCF)
-- Autoencoder-based Collaborative Filtering
-- Deep Matrix Factorization
+- #### **Model 1 (Baseline) - Linear Regression:**
+Dipilih karena interpretabilitasnya yang tinggi dan kemampuannya menangkap hubungan linear yang kuat pada metrik media sosial.
+- #### **Model 2 (Advanced) - Random Forest Regressor:**
+Dipilih karena ketangguhannya terhadap outliers dan kemampuan menangkap pola non-linear. Dilengkapi dengan Hyperparameter Tuning.
+- #### **Model 3 (Deep Learning) - Multilayer Perceptron (MLP)**
+Dipilih untuk menguji apakah arsitektur neural network mampu mengekstrak fitur laten yang lebih kompleks dibanding metode klasik.
 
 **Minimum Requirements untuk Deep Learning:**
 - ✅ Model harus training minimal 10 epochs
@@ -131,8 +77,6 @@ Model deep learning yang sesuai dengan jenis data.
 - ❌ Copy-paste kode tanpa pemahaman
 - ❌ Model tidak di-train (hanya define arsitektur)
 - ❌ Tidak ada evaluasi pada test set
-
-**[Jelaskan model deep learning yang Anda pilih dan alasannya]**
 
 ---
 
