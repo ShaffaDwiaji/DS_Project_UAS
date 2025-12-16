@@ -2,8 +2,8 @@
 *(Isi judul proyek Anda di sini)*
 
 ## 👤 Informasi
-- **Nama:** [...]  
-- **Repo:** [...]  
+- **Nama:** Shaffa Dwiaji Feryansyah Putra  
+- **Repo:** https://github.com/ShaffaDwiaji/DS_Project_UAS
 - **Video:** [...]  
 
 ---
