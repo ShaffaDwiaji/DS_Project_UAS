@@ -125,33 +125,20 @@ Jelaskan kondisi dan permasalahan data:
 ### 4.4 Exploratory Data Analysis (EDA) - (**OPSIONAL**)
 
 **Requirement:** Minimal 3 visualisasi yang bermakna dan insight-nya.
-**Contoh jenis visualisasi yang dapat digunakan:**
-- Histogram (distribusi data)
-- Boxplot (deteksi outliers)
-- Heatmap korelasi (hubungan antar fitur)
-- Bar plot (distribusi kategori)
-- Scatter plot (hubungan 2 variabel)
-- Wordcloud (untuk text data)
-- Sample images (untuk image data)
-- Time series plot (untuk temporal data)
-- Confusion matrix heatmap
-- Class distribution plot
-
-
-#### Visualisasi 1: [Judul Visualisasi]
+#### Visualisasi 1: Distribusi Total Interaction
 [Insert gambar/plot]
 
 **Insight:**  
 [Jelaskan apa yang dapat dipelajari dari visualisasi ini]
 
-#### Visualisasi 2: [Judul Visualisasi]
+#### Visualisasi 2: Rata-Rata Interaksi per Post
 
 [Insert gambar/plot]
 
 **Insight:**  
 [Jelaskan apa yang dapat dipelajari dari visualisasi ini]
 
-#### Visualisasi 3: [Judul Visualisasi]
+#### Visualisasi 3: Korelasi Fitur Utama
 
 [Insert gambar/plot]
 
@@ -167,87 +154,35 @@ Jelaskan kondisi dan permasalahan data:
 Bagian ini menjelaskan **semua** proses transformasi dan preprocessing data yang dilakukan.
 ### 5.1 Data Cleaning
 **Aktivitas:**
-- Handling missing values
-- Removing duplicates
-- Handling outliers
-- Data type conversion
-**Contoh:**
-```
-Missing Values:
-- Fitur 'age' memiliki 50 missing values (5% dari data)
-- Strategi: Imputasi dengan median karena distribusi skewed
-- Alasan: Median lebih robust terhadap outliers dibanding mean
-```
-
-**[Jelaskan langkah-langkah data cleaning yang Anda lakukan]**
-
-
+- Handling Missing Values: Ditemukan missing values pada kolom Paid (diimputasi dengan Modus/0) dan pada like/share (baris dihapus karena jumlahnya tidak signifikan).
+- Pencegahan Data Leakage: Menghapus kolom like, share, dan comment dari fitur input (X). Kolom-kolom ini adalah komponen pembentuk target Total Interactions, sehingga jika disertakan akan menyebabkan kebocoran data (model "mencontek" jawaban).
 
 ### 5.2 Feature Engineering
 **Aktivitas:**
-- Creating new features
-- Feature extraction
-- Feature selection
-- Dimensionality reduction
-
-**[Jelaskan feature engineering yang Anda lakukan]**
+- Feature Selection (Pencegahan Data Leakage): Aktivitas utama yang dilakukan adalah menghapus (drop) fitur-fitur yang merupakan komponen pembentuk variabel target.
+   - Fitur yang dihapus: like, share, dan comment.
+   - Alasan: Variabel target Total Interactions adalah hasil penjumlahan dari like + share + comment. Jika fitur-fitur ini dimasukkan ke dalam data latih (X), model akan "curang" (mencontek jawaban) dan menghasilkan akurasi palsu (Data Leakage). Oleh karena itu, fitur ini wajib dieliminasi agar model hanya belajar dari atribut postingan (seperti Waktu, Tipe, dan Kategori).
+- Dimensionality Reduction: Tidak dilakukan pengurangan dimensi (seperti PCA) karena jumlah fitur dataset relatif sedikit (< 20 fitur). Mempertahankan fitur asli dianggap lebih baik untuk menjaga interpretabilitas model (agar kita tahu persis pengaruh Post Hour atau Type terhadap interaksi).
 
 ### 5.3 Data Transformation
 
-**Untuk Data Tabular:**
-- Encoding (Label Encoding, One-Hot Encoding, Ordinal Encoding)
-- Scaling (Standardization, Normalization, MinMaxScaler)
-
-**Untuk Data Text:**
-- Tokenization
-- Lowercasing
-- Removing punctuation/stopwords
-- Stemming/Lemmatization
-- Padding sequences
-- Word embedding (Word2Vec, GloVe, fastText)
-
-**Untuk Data Image:**
-- Resizing
-- Normalization (pixel values 0-1 atau -1 to 1)
-- Data augmentation (rotation, flip, zoom, brightness, etc.)
-- Color space conversion
-
-**Untuk Time Series:**
-- Creating time windows
-- Lag features
-- Rolling statistics
-- Differencing
-
-**[Jelaskan transformasi yang Anda lakukan]**
+- **Encoding:** Menggunakan One-Hot Encoding pada kolom Type. Fitur ini diubah menjadi kolom biner (Type_Photo, Type_Video, dst) agar bisa diproses oleh Neural Network.
+- **Scaling:** Menggunakan StandardScaler untuk menstandarisasi seluruh fitur numerik (Mean=0, Std=1). Hal ini krusial agar model Deep Learning dapat konvergen dengan baik.
 
 ### 5.4 Data Splitting
 
 **Strategi pembagian data:**
-```
-- Training set: [X]% ([jumlah] samples)
-- Validation set: [X]% ([jumlah] samples) - jika ada
-- Test set: [X]% ([jumlah] samples)
-```
-**Contoh:**
-```
-Menggunakan stratified split untuk mempertahankan distribusi kelas:
-- Training: 80% (8000 samples)
-- Test: 20% (2000 samples)
-- Random state: 42 untuk reproducibility
-```
 
-**[Jelaskan strategi splitting Anda dan alasannya]**
-
-
+Dataset dibagi menjadi tiga subset terpisah (Train, Validation, dan Test) dengan rasio proporsional 70:15:15. Pendekatan 3-way split ini dipilih untuk mengakomodasi kebutuhan training model Deep Learning yang memerlukan data validasi khusus untuk memantau performa per epoch.
+```
+- Training Set   : 70% (346 samples) - Digunakan untuk melatih bobot model.
+- Validation Set : 15% (74 samples)  - Digunakan untuk evaluasi saat proses training (tuning).
+- Test Set       : 15% (75 samples)  - Digunakan HANYA untuk evaluasi akhir (Unseen Data).
+```
 
 ### 5.5 Data Balancing (jika diperlukan)
-**Teknik yang digunakan:**
-- SMOTE (Synthetic Minority Over-sampling Technique)
-- Random Undersampling
-- Class weights
-- Ensemble sampling
 
-**[Jelaskan jika Anda melakukan data balancing]**
+Data Balancing **tidak dilakukan** karena teknik penyeimbangan data (Data Balancing) seperti SMOTE atau Undersampling umumnya diterapkan pada kasus klasifikasi di mana terdapat ketimpangan jumlah kelas yang ekstrem.
 
 ### 5.6 Ringkasan Data Preparation
 
@@ -259,13 +194,21 @@ Menggunakan stratified split untuk mempertahankan distribusi kelas:
 3. **Bagaimana** implementasinya
 **[Jelaskan Bagaimana]**
 
+| Langkah | Apa yang dilakukan | Mengapa penting | Bagaimana implementasinya |
+| ------- | ------------------ | ---------------- | ------------------------- |
+| 1. Data Cleaning | Menangani nilai yang hilang (missing values) pada kolom Paid, like, dan share. | Data kosong dapat menyebabkan error saat training model dan mengurangi akurasi prediksi. | - Mengisi Paid (biner) dengan Modus.<br>- Menghapus baris (drop rows) yang kosong pada kolom like/share karena jumlahnya < 1%.|
+| 2. Feature Selection | Menghapus fitur like, share, dan comment dari variabel input (X). | Mencegah Data Leakage (kebocoran data). Target Total Interactions adalah penjumlahan dari ketiga fitur ini. Jika tidak dihapus, model akan "mencontek" jawaban. | Menggunakan fungsi df.drop(columns=['like', 'share', 'comment']). | 
+| 3. Encoding | Mengubah data kategorikal Type (teks) menjadi format numerik. | Model Machine Learning (terutama Neural Network) hanya dapat memproses input berupa angka, bukan teks. | Menggunakan teknik One-Hot Encoding (pd.get_dummies) yang menghasilkan kolom biner baru (misal: Type_Photo, Type_Video). | 
+| 4. Splitting | Membagi dataset menjadi 3 bagian: Train (70%), Validation (15%), dan Test (15%). | - Train: Untuk melatih model.<br>- Val: Untuk memantau performa saat training (mencegah overfitting).<br>- Test: Evaluasi akhir objektif. | Menggunakan fungsi train_test_split dari Scikit-Learn sebanyak dua tahap secara berurutan.
+| 5. Feature Scaling | Menstandarisasi skala data numerik (Mean=0, Std=1). | Algoritma Deep Learning (MLP) sangat sensitif terhadap skala data. Data yang tidak diskalakan akan membuat proses konvergensi (gradient descent) menjadi lambat atau gagal. | Menggunakan StandardScaler. Scaler di-fit hanya pada data Train, lalu diterapkan (transform) ke data Val dan Test untuk mencegah kebocoran informasi. | 
+
 ---
 
 ## 6. MODELING
 ### 6.1 Model 1 — Baseline Model
 #### 6.1.1 Deskripsi Model
 
-**Nama Model:** [Nama model, misal: Logistic Regression]
+**Nama Model:** Linear Regression
 **Teori Singkat:**  
 [Jelaskan secara singkat bagaimana model ini bekerja]
 **Alasan Pemilihan:**  
@@ -299,7 +242,7 @@ y_pred_baseline = model_baseline.predict(X_test)
 ### 6.2 Model 2 — ML / Advanced Model
 #### 6.2.1 Deskripsi Model
 
-**Nama Model:** [Nama model, misal: Random Forest / XGBoost]
+**Nama Model:** Random Forest Regressor
 **Teori Singkat:**  
 [Jelaskan bagaimana algoritma ini bekerja]
 
@@ -351,10 +294,10 @@ y_pred_advanced = model_advanced.predict(X_test)
 
 #### 6.3.1 Deskripsi Model
 
-**Nama Model:** [Nama arsitektur, misal: CNN / LSTM / MLP]
+**Nama Model:** Multi Layer Perceptron (MLP) Sequential
 
 ** (Centang) Jenis Deep Learning: **
-- [ ] Multilayer Perceptron (MLP) - untuk tabular
+- [x] Multilayer Perceptron (MLP) - untuk tabular
 - [ ] Convolutional Neural Network (CNN) - untuk image
 - [ ] Recurrent Neural Network (LSTM/GRU) - untuk sequential/text
 - [ ] Transfer Learning - untuk image
