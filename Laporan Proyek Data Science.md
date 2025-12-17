@@ -83,40 +83,44 @@ Dipilih untuk menguji apakah arsitektur neural network mampu mengekstrak fitur l
 ## 4. DATA UNDERSTANDING
 ### 4.1 Informasi Dataset
 **Sumber Dataset:**  
-[Sebutkan sumber: Kaggle, UCI ML Repository, atau sumber lain dengan URL]
+https://archive.ics.uci.edu/dataset/368/facebook+metrics
 
 **Deskripsi Dataset:**
-- Jumlah baris (rows): [angka]
-- Jumlah kolom (columns/features): [angka]
-- Tipe data: [Tabular / Image / Text / Time Series / Audio / Video]
-- Ukuran dataset: [MB/GB]
-- Format file: [CSV / JSON / Images / TXT / etc.]
+- Jumlah baris (rows): 500
+- Jumlah kolom (columns/features): 19
+- Tipe data: Tabular
+- Ukuran dataset: 15,9 KB
+- Format file: CSV
 
 ### 4.2 Deskripsi Fitur
 Jelaskan setiap fitur/kolom yang ada dalam dataset.
-**Contoh tabel:**
-| Nama Fitur | Tipe Data | Deskripsi | Contoh Nilai |
-|------------|-----------|-----------|--------------|
-| id | Integer | ID unik data | 1, 2, 3 |
-| age | Integer | Usia (tahun) | 25, 30, 45 |
-| income | Float | Pendapatan (juta) | 5.5, 10.2 |
-| category | Categorical | Kategori produk | A, B, C |
-| text | String | Teks ulasan | "Produk bagus..." |
-| image | Image | Citra 224x224 RGB | Array 224x224x3 |
-| label | Categorical | Label target | 0, 1 atau "positif", "negatif" |
 
-**[Buat tabel deskripsi fitur Anda di sini]**
+| Nama Fitur | Tipe Data | Deskripsi | Contoh Nilai |
+| ---------- | --------- | --------- | ------------ |
+| Page total likes | Integer | Jumlah pengikut halaman saat postingan dibuat | 139441 |
+| Type | Kategorikal | Jenis konten | Link, Photo, Status, Video |
+| Category | Integer | Kategori konten | 1, 2, 3 |
+| Post Month | Integer | Bulan posting | (1-12) |
+| Post Hour | Integer | Jam posting | (0-23) |
+| Paid | Biner | Status berbayar | (0 = Tidak, 1 = Ya) |
+| Lifetime Post Total Reach | Integer | Jumlah orang yang melihat postingan (Reach) | 2752, 10460 |
+
 
 ### 4.3 Kondisi Data
-
 Jelaskan kondisi dan permasalahan data:
-
-- **Missing Values:** [Ada/Tidak, berapa persen?]
-- **Duplicate Data:** [Ada/Tidak, berapa banyak?]
-- **Outliers:** [Ada/Tidak, pada fitur apa?]
-- **Imbalanced Data:** [Ada/Tidak, rasio kelas?]
-- **Noise:** [Jelaskan jika ada]
-- **Data Quality Issues:** [Jelaskan jika ada masalah lain]
+- **Missing Values:** Ada (Sangat Sedikit). Ditemukan data kosong pada kolom:
+   - Paid: 1 data hilang (0.2%).
+   - like: 1 data hilang (0.2%).
+   - share: 4 data hilang (0.8%).
+   - Dilakukan imputasi modus untuk kolom Paid dan penghapusan baris (drop rows) untuk like/share.
+- **Duplicate Data:** Tidak Ada.
+- **Outliers:** Terdeteksi outliers yang kuat pada fitur Total Interactions dan Lifetime Post Total Reach.
+   - Bukti: Histogram menunjukkan distribusi data yang sangat miring ke kanan (right-skewed). Mayoritas postingan memiliki interaksi di bawah angka 500, namun terdapat segelintir postingan "viral" dengan interaksi ekstrem (di atas 2.000 hingga 6.000).
+- **Imbalanced Data:** Ada (Pada Fitur Kategorikal). Ketidakseimbangan terjadi pada fitur input:
+   - Fitur Type: Sangat didominasi oleh kategori 'Photo' (sekitar 85% data), sedangkan kategori 'Video' dan 'Status' jumlahnya sangat sedikit.
+   - Fitur Paid: Mayoritas postingan adalah organik (Unpaid / 0), dengan rasio sekitar 3:1 dibandingkan postingan berbayar.
+- **Noise:** Terdapat variasi yang besar pada fitur Lifetime Post Total Reach. Postingan dengan atribut waktu (Month, Hour) yang sama bisa memiliki jangkauan yang sangat berbeda jauh, mengindikasikan adanya faktor eksternal yang tidak terekam dalam dataset tabular ini.
+- **Data Quality Issues:** Isu kualitas data terbesar pada dataset ini adalah adanya fitur yang menjadi bagian dari target. Kolom like, share, dan comment secara matematis jika dijumlahkan akan menjadi Total Interactions. Jika fitur ini tidak dibuang, model akan mengalami "kebocoran data" (akurasi palsu 100%).
 
 ### 4.4 Exploratory Data Analysis (EDA) - (**OPSIONAL**)
 
