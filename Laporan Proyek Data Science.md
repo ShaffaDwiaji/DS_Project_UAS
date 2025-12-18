@@ -126,26 +126,24 @@ Jelaskan kondisi dan permasalahan data:
 
 **Requirement:** Minimal 3 visualisasi yang bermakna dan insight-nya.
 #### Visualisasi 1: Distribusi Total Interaction
-[Insert gambar/plot]
+![Histogram](image/Histogram.png)
 
 **Insight:**  
-[Jelaskan apa yang dapat dipelajari dari visualisasi ini]
+Menunjukkan bahwa data Total Interactions memiliki distribusi skewed (miring ke kanan), di mana mayoritas postingan memiliki interaksi rendah, namun ada beberapa outliers (viral).
 
 #### Visualisasi 2: Rata-Rata Interaksi per Post
 
-[Insert gambar/plot]
+![Barplot](image/Barplot.png)
 
 **Insight:**  
-[Jelaskan apa yang dapat dipelajari dari visualisasi ini]
+Visualisasi Barplot menunjukkan perbedaan rata-rata interaksi antara tipe 'Photo', 'Video', dan 'Status'.
 
 #### Visualisasi 3: Korelasi Fitur Utama
 
-[Insert gambar/plot]
+![Heatmap](image/Heatmap.png)
 
 **Insight:**  
-[Jelaskan apa yang dapat dipelajari dari visualisasi ini]
-
-
+Menunjukkan adanya korelasi positif yang sangat kuat antara fitur jangkauan (Reach/Impressions) dengan target Total Interactions.
 
 ---
 
@@ -393,7 +391,11 @@ Google Colab (CPU Standard).
 
 **Training History Visualization:**
 
-[Tempelkan Screenshot Grafik Loss & MAE dari Notebook Cell 16 di sini] (Pastikan ada dua garis: Train (biru) dan Validation (oranye))
+Grafik Model Loss<br>
+![MSE](image/MSE.png "Model Loss")
+
+Grafik Model Metric<br>
+![MAE](image/MAE.png "Model Metric")
 
 **Analisis Training:**
 - Konvergensi: Model berhasil konvergen, terlihat dari grafik Loss (MSE) yang menurun seiring bertambahnya epoch.
@@ -487,7 +489,7 @@ R2   : 0.5109
 | Deep Learning | 88.60 | 167.04 | 0.5109 | 9.57s |
 
 **Visualisasi Perbandingan:**  
-[Insert bar chart atau plot perbandingan metrik]
+![Perbandingan R2](image/Perbandingan_R2_Score.png)
 
 ### 7.4 Analisis Hasil
 
@@ -592,7 +594,7 @@ Saran pengembangan untuk proyek selanjutnya:
 
 ### 10.1 GitHub Repository
 
-**Link Repository:** [URL GitHub Anda]
+**Link Repository:** https://github.com/ShaffaDwiaji/DS_Project_UAS
 
 **Repository harus berisi:**
 - ✅ Notebook Jupyter/Colab dengan hasil running
