@@ -35,16 +35,15 @@ project/
 │   └── processed/          # Data bersih (X_train_processed.csv, dll)
 │
 ├── notebooks/              # Jupyter notebooks
-│   └── ML_Project.ipynb
+│   └── 234311028_Shaffa Dwiaji F P_UAS_DATA_SCIENCE.ipynb
 │
 ├── src/                    # Source code
 │   
 ├── models/                 # Saved models
-│   ├── best_model_rf.pkl   # Model Random Forest
+│   ├── best_model_lr.pkl   # Best Model
 │   └── model_dl.h5         # Model Deep Learning
 │
 ├── images/                 # Visualizations
-│   └── r
 │
 ├── requirements.txt        # Dependencies
 ├── .gitignore
@@ -104,15 +103,15 @@ project/
 ---
 
 # 8. 🔮 Future Work
-- [ ] Tambah data  
+- [x] Tambah data  
 - [x] Tuning model  
 - [ ] Coba arsitektur DL lain  
-- [ ] Deployment  
+- [x] Deployment  
 
 ---
 
 # 9. 🔁 Reproducibility
-Gunakan environment Python 3.8+ dan install dependencies:
+Gunakan environment Python 3.10 dan install dependencies:
 ```python
   pip install -r requirements.txt
 ```
