@@ -4,7 +4,7 @@
 ## 👤 Informasi
 - **Nama:** Shaffa Dwiaji Feryansyah Putra  
 - **Repo:** https://github.com/ShaffaDwiaji/DS_Project_UAS
-- **Video:** [...]  
+- **Video:** https://youtu.be/pZfH3Jg2JBw
 
 ---
 
