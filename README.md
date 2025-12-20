@@ -89,9 +89,9 @@ project/
 ### Hasil Singkat
 | Model | MAE | RMSE | R2 Score | Catatan |
 | ----- | --- | ---- | -------- | ------- | 
-| Linear Regression | 35.37 | 59.97 | 0.93 | Model Terbaik (Error Terendah) |
-| Random Forest | 66.97 | 138.6 | 0.66 | Mengalami kesulitan generalisasi |
-| Deep Learning | 88.86 | 172.48 | 0.47 | Performa terendah (Overfitting/Underfitting) |
+| Linear Regression | 35.38 | 59.97 | 0.9370 | Model Terbaik (Error Terendah) |
+| Random Forest | 66.97 | 138.60 | 0.6633 | Mengalami kesulitan generalisasi |
+| Deep Learning | 88.60 | 167.04 | 0.5109 | Performa terendah (Overfitting/Underfitting) |
 
 ---
 
