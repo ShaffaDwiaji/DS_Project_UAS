@@ -45,7 +45,6 @@ Dataset yang digunakan berasal dari penelitian Moro et al. (2016) yang dipublika
 ## 3. BUSINESS UNDERSTANDING / PROBLEM UNDERSTANDING
 ### 3.1 Problem Statements
 
-Tuliskan 2–4 pernyataan masalah yang jelas dan spesifik.
 1. Manajer pemasaran kesulitan memperkirakan potensi viralitas atau interaksi sebuah postingan baru.
 2. Belum diketahui fitur apa (Waktu posting, Tipe konten, atau Pembayaran) yang paling signifikan mendongkrak interaksi.
 3. Diperlukan perbandingan performa antara model sederhana dan kompleks untuk menentukan alat prediksi yang paling efisien pada dataset berukuran kecil.
@@ -61,11 +60,11 @@ Tujuan harus spesifik, terukur, dan selaras dengan problem statement.
 
 Mahasiswa **WAJIB** menggunakan minimal **tiga model** dengan komposisi sebagai berikut:
 - #### **Model 1 (Baseline) - Linear Regression:**
-Dipilih karena interpretabilitasnya yang tinggi dan kemampuannya menangkap hubungan linear yang kuat pada metrik media sosial.
+   Dipilih karena interpretabilitasnya yang tinggi dan kemampuannya menangkap hubungan linear yang kuat pada metrik media sosial.
 - #### **Model 2 (Advanced) - Random Forest Regressor:**
-Dipilih karena ketangguhannya terhadap outliers dan kemampuan menangkap pola non-linear. Dilengkapi dengan Hyperparameter Tuning.
+   Dipilih karena ketangguhannya terhadap outliers dan kemampuan menangkap pola non-linear. Dilengkapi dengan Hyperparameter Tuning.
 - #### **Model 3 (Deep Learning) - Multilayer Perceptron (MLP)**
-Dipilih untuk menguji apakah arsitektur neural network mampu mengekstrak fitur laten yang lebih kompleks dibanding metode klasik.
+   Dipilih untuk menguji apakah arsitektur neural network mampu mengekstrak fitur laten yang lebih kompleks dibanding metode klasik.
 
 **Minimum Requirements untuk Deep Learning:**
 - ✅ Model harus training minimal 10 epochs
