@@ -10,7 +10,7 @@
 **Dosen Pengampu:** Gus Nanang Syaifuddiin, S.Kom., M.Kom. <br>
 **Tahun Akademik:** 2025/Ganjil (5) <br>
 **Link GitHub Repository:** https://github.com/ShaffaDwiaji/DS_Project_UAS <br>
-**Link Video Pembahasan:** [URL Repository]
+**Link Video Pembahasan:** https://youtu.be/pZfH3Jg2JBw
 
 ---
 
