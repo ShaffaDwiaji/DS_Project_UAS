@@ -7,7 +7,7 @@ Sebelum mengumpulkan proyek, pastikan:
 - [x] Ada visualisasi EDA (min. 3)
 - [x] Ada hasil evaluasi ketiga model
 - [x] Ada link GitHub yang dapat diakses
-- [ ] Ada link video penjeloasan proyek
+- [x] Ada link video penjeloasan proyek
 
 ### **GitHub Repository:**
 - [x] Kode dapat dijalankan (tested)
